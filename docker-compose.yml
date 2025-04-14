@@ -1,0 +1,67 @@
+
+services:
+  web:
+    build: ./cismatch_backend
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && uvicorn cismatch_backend.asgi:application --host 0.0.0.0 --port 8000"
+    volumes:
+      - ./cismatch_backend:/usr/src/cismatch_backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - redis
+      - db
+    environment:
+      - CONTAINER_ROLE=web
+  
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgres/data/
+    environment:
+      - POSTGRES_USER=ptenec
+      - POSTGRES_PASSWORD=3761786Qa!
+      - POSTGRES_DB=cismatch
+      
+  adminer:
+    image: adminer
+    restart: always   #c 26 по 30 строку(вставлен новый фрагмент)
+    ports:
+      - 8080:8080
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    env_file:
+      - ./.env.dev
+
+  celery:
+    build: ./cismatch_backend
+    container_name: celery_worker
+    command: celery -A cismatch_backend.celery worker --loglevel=info
+    depends_on:
+      - redis
+      - web
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    env_file:
+      - ./.env.dev
+
+  celery-beat:
+    build: ./cismatch_backend
+    container_name: celery_beat
+    command: celery -A cismatch_backend.celery beat --loglevel=info
+    depends_on:
+      - redis
+      - web
+      - celery
+      
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    env_file:
+      - ./.env.dev
+          
+volumes:
+  postgres_data:

@@ -1,0 +1,76 @@
+version: '3.9'
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - web
+  web:
+    build:
+      context: ./cismatch_backend
+      dockerfile: Dockerfile.prod
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && uvicorn cismatch_backend.asgi:application --host 0.0.0.0 --port 8000"
+    volumes:
+      - ./cismatch_backend:/usr/src/cismatch_backend
+      - static_volume:/usr/src/cismatch_backend/static
+      - media_volume:/usr/src/cismatch_backend/media
+    expose:
+      - "8000"
+    env_file:
+      - ./.env.prod
+    depends_on:
+      - redis
+      - db
+    environment:
+      - CONTAINER_ROLE=web
+
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    restart: always
+    environment:
+      - POSTGRES_USER=ptenec
+      - POSTGRES_PASSWORD=3761786Qa!
+      - POSTGRES_DB=cismatch
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+
+  celery:
+    build:
+      context: ./cismatch_backend
+      dockerfile: Dockerfile.prod
+    container_name: celery_worker
+    command: celery -A cismatch_backend.celery worker --loglevel=info
+    depends_on:
+      - redis
+      - web
+    env_file:
+      - ./.env.prod
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+
+  celery-beat:
+    build:
+      context: ./cismatch_backend
+      dockerfile: Dockerfile.prod
+    container_name: celery_beat
+    command: celery -A cismatch_backend.celery beat --loglevel=info
+    depends_on:
+      - redis
+      - web
+      - celery
+    env_file:
+      - ./.env.prod
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

@@ -1,0 +1,28 @@
+# Используем Python образ
+FROM python:3.12.2-slim-bullseye
+
+# Устанавливаем зависимости системы
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Устанавливаем рабочую директорию
+WORKDIR /usr/src/cismatch_backend
+
+# Копируем зависимости
+COPY requirements.txt .
+
+# Установка зависимостей Python
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+# Копируем весь код проекта
+COPY . .
+
+# Собираем статику заранее
+RUN python manage.py collectstatic --noinput
+
+# Указываем переменные среды
+ENV PYTHONUNBUFFERED=1
+
+# Gunicorn будет запускаться через docker-compose, не указываем ENTRYPOINT
