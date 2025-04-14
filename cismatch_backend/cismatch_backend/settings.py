@@ -23,7 +23,7 @@ DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
 if DEBUG:
     ALLOWED_HOSTS = ["localhost", "127.0.0.1", "89.169.0.127"]
 else:
-    ALLOWED_HOSTS = ["89.169.0.127", "api.cismatch.ru"]
+    ALLOWED_HOSTS = ["api.cismatch.ru"]
 
 AUTH_USER_MODEL = 'useraccount.User'
 
