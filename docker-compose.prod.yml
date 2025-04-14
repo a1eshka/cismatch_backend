@@ -6,6 +6,7 @@ services:
       - 80:80
     volumes:
       - static_volume:/usr/src/cismatch_backend/static
+      - media_volume:/usr/src/cismatch_backend/media
     depends_on:
       - web
   web:
@@ -16,7 +17,7 @@ services:
     volumes:
       - ./cismatch_backend:/usr/src/cismatch_backend
       - static_volume:/usr/src/cismatch_backend/static
-      - /home/ptenec/cismatch_backend/cismatch_backend/media:/usr/src/cismatch_backend/media
+      - media_volume:/usr/src/cismatch_backend/media
     expose:
       - "8000"
     env_file:
