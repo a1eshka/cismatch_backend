@@ -30,7 +30,7 @@ AUTH_USER_MODEL = 'useraccount.User'
 if DEBUG:
     WEBSITE_URL = 'http://localhost:8000'
 else: 
-    WEBSITE_URL = 'http://api.cismatch.ru:1337'
+    WEBSITE_URL = 'https://api.cismatch.ru'
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
