@@ -37,7 +37,11 @@ services:
       - POSTGRES_USER=ptenec
       - POSTGRES_PASSWORD=3761786Qa!
       - POSTGRES_DB=cismatch
-
+  adminer:
+    image: adminer
+    restart: always   #c 26 по 30 строку(вставлен новый фрагмент)
+    ports:
+      - 8080:8080
   redis:
     image: redis:latest
     container_name: redis
