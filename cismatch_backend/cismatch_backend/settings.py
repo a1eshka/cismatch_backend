@@ -30,7 +30,7 @@ AUTH_USER_MODEL = 'useraccount.User'
 if DEBUG:
     WEBSITE_URL = 'http://localhost:8000'
 else: 
-    WEBSITE_URL = 'http://api.cismatch.ru'
+    WEBSITE_URL = 'http://api.cismatch.ru:1337'
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
@@ -92,8 +92,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:8000',
     'https://cismatch.ru',
-    'https://api.cismatch.ru',
-    'http://api.cismatch.ru', 
+    'https://api.cismatch.ru:1337',
+    'http://api.cismatch.ru:1337', 
 ]
 CORS_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
@@ -101,8 +101,8 @@ CORS_TRUSTED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:8000',
     'https://cismatch.ru',
-    'https://api.cismatch.ru',
-    'http://api.cismatch.ru', 
+    'https://api.cismatch.ru:1337',
+    'http://api.cismatch.ru:1337', 
 ]
 CORS_ORIGINS_WHITELIST = [
     'http://127.0.0.1:8000',
@@ -110,8 +110,8 @@ CORS_ORIGINS_WHITELIST = [
     'http://localhost:3000',
     'http://localhost:8000',
     'https://cismatch.ru',
-    'https://api.cismatch.ru',
-    'http://api.cismatch.ru',
+    'https://api.cismatch.ru:1337',
+    'http://api.cismatch.ru:1337',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
