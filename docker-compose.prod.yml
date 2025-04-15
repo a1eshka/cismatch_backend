@@ -19,7 +19,7 @@ services:
       - static_volume:/usr/src/cismatch_backend/static
       - media_volume:/usr/src/cismatch_backend/media
     expose:
-      - "8000"
+      - "8000:8000"
     env_file:
       - /home/ptenec/cismatch_backend/.env.prod
     depends_on:
