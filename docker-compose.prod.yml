@@ -3,7 +3,7 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - 80:80
+      - 1337:80
     volumes:
       - static_volume:/usr/src/cismatch_backend/static
       - media_volume:/usr/src/cismatch_backend/media
