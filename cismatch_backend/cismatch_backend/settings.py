@@ -91,16 +91,18 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
     'http://localhost:3000',
     'http://localhost:8000',
-    'http://89.169.0.127',
-    'http://89.169.0.127:80'
+    'https://cismatch.ru',
+    'https://api.cismatch.ru',
+    'http://api.cismatch.ru', 
 ]
 CORS_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://127.0.0.1:3000',
     'http://localhost:3000',
     'http://localhost:8000',
-    'http://89.169.0.127',
-    'http://89.169.0.127:80'
+    'https://cismatch.ru',
+    'https://api.cismatch.ru',
+    'http://api.cismatch.ru', 
 ]
 CORS_ORIGINS_WHITELIST = [
     'http://127.0.0.1:8000',
