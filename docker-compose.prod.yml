@@ -6,7 +6,7 @@ services:
       - 1337:80
     volumes:
       - static_volume:/usr/src/cismatch_backend/static
-      - media_volume:/usr/src/cismatch_backend/media
+      - /home/ptenec/cismatch_backend/cismatch_backend/media:/usr/src/cismatch_backend/media
     depends_on:
       - web
   web:
