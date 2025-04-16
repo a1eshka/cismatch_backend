@@ -6,6 +6,7 @@ from steampy.models import Asset, GameOptions
 
 
 STEAM_API_KEY = os.getenv("STEAM_API_KEY")
+print('STEAM_API_KEY', STEAM_API_KEY)
 STEAM_USERNAME = os.getenv("STEAM_USERNAME")
 STEAM_PASSWORD = os.getenv("STEAM_PASSWORD")
 SHARED_SECRET = os.getenv("STEAM_SHARED_SECRET")
