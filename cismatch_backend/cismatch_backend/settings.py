@@ -52,8 +52,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 SOCIALACCOUNT_LOGIN_ON_GET = True
 SOCIALACCOUNT_SIGNUP_AUTO_LOGIN = True
 SOCIALACCOUNT_ADAPTER = 'useraccount.social_account_adapter.CustomSocialAccountAdapter'
-LOGIN_REDIRECT_URL = 'http://localhost:3000'
-ACCOUNT_AUTHENTICATED_REDIRECT_URL = 'http://localhost:3000'
+LOGIN_REDIRECT_URL = 'https://cismatch.ru'
+ACCOUNT_AUTHENTICATED_REDIRECT_URL = 'https://cismatch.ru'
 
 
 SOCIAL_AUTH_PIPELINE = [
