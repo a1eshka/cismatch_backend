@@ -27,8 +27,8 @@ def get_server(request):
                 info = a2s.info(server_info)
                 player_count = info.player_count
                 max_players = info.max_players
-                map_image_url = f"{settings.WEBSITE_URL}/media/servers/maps/{info.map_name}.jpg"
-                map_icon_url = f"{settings.WEBSITE_URL}/media/servers/icons/{info.map_name}.png"
+                map_image_url = f"{settings.WEBSITE_URL}/media/servers/maps/{info.map_name}.webp"
+                map_icon_url = f"{settings.WEBSITE_URL}/media/servers/icons/{info.map_name}.webp"
                 server_data.append({
                     'id': str(server.id),
                     'ip': server.ip,
@@ -69,8 +69,8 @@ def get_third_party_servers(request):
             info = a2s.info(server_info)
             player_count = info.player_count
             max_players = info.max_players
-            map_image_url = f"{settings.WEBSITE_URL}/media/servers/maps/{info.map_name}.jpg"
-            map_icon_url = f"{settings.WEBSITE_URL}/media/servers/icons/{info.map_name}.png"
+            map_image_url = f"{settings.WEBSITE_URL}/media/servers/maps/{info.map_name}.webp"
+            map_icon_url = f"{settings.WEBSITE_URL}/media/servers/icons/{info.map_name}.webp"
 
             # Сериализуем сервер
             serializer = ThirdPartyServerSerializer(server)
@@ -120,6 +120,7 @@ def get_user_servers(request):
             max_players = info.max_players
             map_image_url = f"{settings.WEBSITE_URL}/media/servers/maps/{info.map_name}.webp"
             map_icon_url = f"{settings.WEBSITE_URL}/media/servers/icons/{info.map_name}.webp"
+            
 
             # Сериализуем сервер
             serializer = ThirdPartyServerSerializer(server)
