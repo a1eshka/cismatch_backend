@@ -118,8 +118,8 @@ def get_user_servers(request):
             info = a2s.info(server_info)  # Получаем информацию о сервере через a2s
             player_count = info.player_count
             max_players = info.max_players
-            map_image_url = f"{settings.WEBSITE_URL}/media/servers/maps/{info.map_name}.jpg"
-            map_icon_url = f"{settings.WEBSITE_URL}/media/servers/icons/{info.map_name}.png"
+            map_image_url = f"{settings.WEBSITE_URL}/media/servers/maps/{info.map_name}.webp"
+            map_icon_url = f"{settings.WEBSITE_URL}/media/servers/icons/{info.map_name}.webp"
 
             # Сериализуем сервер
             serializer = ThirdPartyServerSerializer(server)
